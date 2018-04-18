@@ -44,16 +44,16 @@ Haiku.prototype.syllableCheck = function () {
   }
   for (let k = 0; k < lineArray3.length; k++) {
     // let check = false;
-    let index = lineArray3[k].indexOf(/[b-df-hj-np-tv-z][b-df-hj-np-tv-z]/);
+    let index = lineArray3[k].search(/[b-df-hj-np-tv-z][b-dfgj-np-tv-z]/);
     console.log(index);
-    let part = lineArray3[k].slice(0, index)
-    let part2 = lineArray3[k].slice(index, lineArray3[k].length);
+    let part = lineArray3[k].slice(0, index+1)
+    let part2 = lineArray3[k].slice(index+1, lineArray3[k].length);
     finalArray.push(part);
     finalArray.push(part2);
   }
-  lineArray3.forEach(function(element){
-    finalArray.push(element);
-  });
+  // lineArray3.forEach(function(element){
+  //   finalArray.push(element);
+  // });
   console.log(finalArray);
   return finalArray.length;
 };
