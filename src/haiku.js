@@ -11,6 +11,7 @@ Haiku.prototype.syllableCheck = function () {
   let lineArray = this.line1.split(" ");
   let lineArray2 = [];
   let lineArray3 = [];
+  let lineArray4 = [];
   let finalArray = [];
   for (let i = 0; i < lineArray.length; i++) {
     let check = false;
@@ -42,15 +43,31 @@ Haiku.prototype.syllableCheck = function () {
       lineArray3.push(lineArray2[j]);
     }
   }
-  for (let k = 0; k < lineArray3.length; k++) {
+  for (let l = 0; l < lineArray3.length; l++) {
+    let check = false;
+    if(/["ckle"]/.test(lineArray3[l])){
+      let indexTwo = lineArray3[l].search(/["ckle"]/);
+      console.log(indexTwo);
+      let part = lineArray3[l].slice(0, indexTwo+2)
+      let part2 = lineArray3[l].slice(indexTwo+2, lineArray3[l].length);
+      finalArray.push(part);
+      finalArray.push(part2);
+      check = true;
+    }
+    if(check === false){
+      lineArray4.push(lineArray3[l]);
+    }
+  }
+  for (let k = 0; k < lineArray4.length; k++) {
     // let check = false;
-    let index = lineArray3[k].search(/[b-df-hj-np-tv-z][b-dfgj-np-tv-z]/);
-    console.log(index);
-    let part = lineArray3[k].slice(0, index+1)
-    let part2 = lineArray3[k].slice(index+1, lineArray3[k].length);
+    let index = lineArray4[k].search(/[b-df-hj-np-tv-z][b-dfgj-np-tv-z]/);
+    // console.log(index);
+    let part = lineArray4[k].slice(0, index+1)
+    let part2 = lineArray4[k].slice(index+1, lineArray4[k].length);
     finalArray.push(part);
     finalArray.push(part2);
   }
+
   // lineArray3.forEach(function(element){
   //   finalArray.push(element);
   // });
