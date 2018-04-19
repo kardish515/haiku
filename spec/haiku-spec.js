@@ -1,8 +1,8 @@
 import { Haiku } from './../src/haiku.js';
 
 describe('Haiku', function() {
-  it('should test whether prefixes are removed and returned in new array', function() {
-    let haiku = new Haiku("pickle tickle", "", "");
-    expect(haiku.syllableCheck()).toEqual(4);
+  it('should test whether input is a haiku', function() {
+    let haiku = new Haiku("time button yonder", "time pickle yonder button", "a fun time was had");
+    expect(haiku.haikuCheck()).toEqual(true);
   });
 });
