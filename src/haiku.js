@@ -6,20 +6,27 @@ class Haiku {
   }
 
   syllableCheck(line) {
-
     let syllableCounter = line.match(/[aeiouy]/g).length;
     let lineArray = line.split(" ");
     for (let i = 0; i < lineArray.length; i++) {
-      if(lineArray[i].charAt(0) === "y"){
+      if(lineArray[i].charAt(lineArray[i].length-1) === "e" && lineArray[i].charAt(lineArray[i].length-2) !== "l" && lineArray[i].match(/[aeiouy]/g).length > 1){
         syllableCounter--;
       }
-      if(lineArray[i].charAt(lineArray[i].length-1) === "e" && lineArray[i].charAt(lineArray[i].length-2) !== "l"){
-        syllableCounter--;
+      if(/[aeiouy][aeiouy][aeiouy]/.test(lineArray[i])){
+        syllableCounter -= lineArray[i].match(/[aeiouy][aeiouy][aeiouy]/g).length;
+      }
+      if(/[aeiouy][aeiouy]/.test(lineArray[i])){
+        syllableCounter -= lineArray[i].match(/[aeiouy][aeiouy]/g).length;
+      }
+      if(lineArray[i].includes("ia") === true && lineArray[i].includes("cia") === false){
+        syllableCounter++;
+      }
+      if(lineArray[i].includes("io") === true && lineArray[i].includes("tio") === false && lineArray[i].includes("sio") === false){
+        syllableCounter++;
       }
     }
     console.log(syllableCounter);
     return syllableCounter;
-
   }
 
   haikuCheck() {
