@@ -6,8 +6,9 @@ class Haiku {
   }
 
   syllableCheck(line) {
-    let syllableCounter = line.match(/[aeiouy]/g).length;
-    let lineArray = line.split(" ");
+    let lowerCase = line.toLowerCase();
+    let syllableCounter = lowerCase.match(/[aeiouy]/g).length;
+    let lineArray = lowerCase.split(" ");
     for (let i = 0; i < lineArray.length; i++) {
       if(lineArray[i].charAt(lineArray[i].length-1) === "e" && lineArray[i].charAt(lineArray[i].length-2) !== "l" && lineArray[i].match(/[aeiouy]/g).length > 1){
         syllableCounter--;
@@ -22,6 +23,9 @@ class Haiku {
         syllableCounter++;
       }
       if(lineArray[i].includes("io") === true && lineArray[i].includes("tio") === false && lineArray[i].includes("sio") === false){
+        syllableCounter++;
+      }
+      if(lineArray[i].charAt(lineArray[i].length-1) === "e" && lineArray[i].charAt(lineArray[i].length-2) === "e"){
         syllableCounter++;
       }
     }
